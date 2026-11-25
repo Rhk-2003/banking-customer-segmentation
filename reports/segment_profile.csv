@@ -1,0 +1,5 @@
+segment,customers,age,recency_days,frequency,monetary_total,monetary_avg,balance_avg,balance_to_spend,txn_hour_avg,share_pct,label,action
+0,360101,30.68574538809945,56.067786537665825,1.2238899642044871,1343.0,1105.0,34681.83,28.205531645569618,15.82678271744131,40.75,Core Mass Affluent,"Cross-sell depth: recurring deposits, auto-debit, protection and card upgrades"
+1,312733,27.98859506352064,56.42021468792868,1.1250715466548142,179.0,160.0,12355.53,95.15276470588235,15.031650321520273,35.39,Emerging Mass Market,"Build balances: step-up recurring deposits, salary account pitch, digital nudges"
+2,94826,28.644911733068987,58.47260245080463,1.037342079176597,295.0,284.745,117.58500000000001,0.4612,15.159264512545786,10.73,Thin-Balance At-Risk,"Retention and activation first: balance-building offers, fee waivers, re-onboarding before any credit pitch"
+3,116000,49.56354396551724,54.974,1.3516724137931035,1141.38,912.0,53523.3975,59.435405525846704,15.400823275862068,13.13,Affluent Established,"Wealth tier: fixed deposits, investment advisory, premium credit cards, relationship-manager coverage"

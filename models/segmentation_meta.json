@@ -1,0 +1,50 @@
+{
+  "cluster_cols": [
+    "age",
+    "monetary_avg",
+    "balance_avg"
+  ],
+  "k": 4,
+  "n_customers": 883660,
+  "segment_names": {
+    "3": {
+      "label": "Affluent Established",
+      "action": "Wealth tier: fixed deposits, investment advisory, premium credit cards, relationship-manager coverage",
+      "value_rank": 0
+    },
+    "0": {
+      "label": "Core Mass Affluent",
+      "action": "Cross-sell depth: recurring deposits, auto-debit, protection and card upgrades",
+      "value_rank": 1
+    },
+    "1": {
+      "label": "Emerging Mass Market",
+      "action": "Build balances: step-up recurring deposits, salary account pitch, digital nudges",
+      "value_rank": 2
+    },
+    "2": {
+      "label": "Thin-Balance At-Risk",
+      "action": "Retention and activation first: balance-building offers, fee waivers, re-onboarding before any credit pitch",
+      "value_rank": 3
+    }
+  },
+  "feature_ranges": {
+    "age": [
+      20.1,
+      64.4
+    ],
+    "monetary_avg": [
+      10.0,
+      19990.0
+    ],
+    "balance_avg": [
+      4.52,
+      1535252.23
+    ]
+  },
+  "feature_medians": {
+    "age": 29.8,
+    "monetary_avg": 500.0,
+    "balance_avg": 18711.0
+  }
+}

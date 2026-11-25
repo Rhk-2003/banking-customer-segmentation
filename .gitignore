@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+# raw input + large regenerable intermediates
+data/bank_transactions.csv
+data/customer_features.parquet
+data/customers_segmented.parquet
