@@ -21,13 +21,31 @@ sample so you can see *where* they land, not just which label they get.
 
 | Segment | Share | Avg age | Median balance | Median txn | Sales action |
 |---|---|---|---|---|---|
-| **Affluent Established** | 13.1% | 49.6 | ₹53,523 | ₹912 | Wealth tier: fixed deposits, investment advisory, premium cards |
-| **Core Mass Affluent** | 40.8% | 30.7 | ₹34,682 | ₹1,105 | Cross-sell depth: recurring deposits, auto-debit, card upgrades |
-| **Emerging Mass Market** | 35.4% | 28.0 | ₹12,356 | ₹160 | Build balances: step-up RDs, salary account pitch |
-| **Thin-Balance At-Risk** | 10.7% | 28.6 | ₹118 | ₹285 | Retention first: balance-building, fee waivers, re-onboarding |
+| **Established Mid-Balance** | 13.1% | 49.6 | ₹53,523 | ₹912 | Term deposits, portfolio review, retirement and protection |
+| **Young Mid-Balance** | 40.8% | 30.7 | ₹34,682 | ₹1,105 | Volume segment: recurring deposits, auto-debit, card upgrades |
+| **Young Low-Balance** | 35.4% | 28.0 | ₹12,356 | ₹160 | Balance-building: step-up RDs, salary account pitch |
+| **Near-Zero Balance** | 10.7% | 28.6 | ₹118 | ₹285 | Retention first: balance-building, fee waivers, re-onboarding |
 
-The Thin-Balance group is the commercially interesting one: a balance-to-spend ratio of
-**0.5** means their typical transaction is twice the balance backing it.
+The Near-Zero group is the only sharply defined one — median ₹118, max ₹1,813 — and the
+only genuinely actionable segment: a balance-to-spend ratio of **0.5** means their typical
+transaction is twice the balance backing it.
+
+### Why no "affluent" or "premium" in these names
+
+An earlier version of this project ranked the clusters and labelled them *Affluent
+Established* / *Core Mass Affluent*. The data does not support that vocabulary:
+
+- The top cluster's median balance of ₹53,523 is only the **72nd percentile** of this base.
+- "Core Mass Affluent" covered **40.8% of all customers** — a plurality cannot be affluent.
+- Of the 15,722 customers actually holding over ₹10 lakh, **52.8% sat in the *second*
+  tier**, not the top one — the "affluent" cluster did not even contain most affluent customers.
+- The real separator between the top two clusters is **age** (median 47 vs 30), not wealth.
+  Because balance is log-transformed before clustering, ₹53k and ₹11 crore land close
+  together and age splits them instead.
+
+The names now describe balance tier and life stage, which is what the clusters actually
+encode. Absolute wealth is not something this dataset can speak to — it records average
+account balance from a transaction log, not total relationship value.
 
 ## Pipeline
 

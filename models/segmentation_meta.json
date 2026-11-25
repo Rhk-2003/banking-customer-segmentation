@@ -8,24 +8,24 @@
   "n_customers": 883660,
   "segment_names": {
     "3": {
-      "label": "Affluent Established",
-      "action": "Wealth tier: fixed deposits, investment advisory, premium credit cards, relationship-manager coverage",
-      "value_rank": 0
+      "label": "Established Mid-Balance",
+      "action": "Longest tenure and the highest balances in this base. Term deposits, portfolio review, retirement and protection products.",
+      "balance_rank": 0
     },
     "0": {
-      "label": "Core Mass Affluent",
-      "action": "Cross-sell depth: recurring deposits, auto-debit, protection and card upgrades",
-      "value_rank": 1
+      "label": "Young Mid-Balance",
+      "action": "The volume segment. Recurring deposits, auto-debit, card upgrades - test offers here before rolling them out.",
+      "balance_rank": 1
     },
     "1": {
-      "label": "Emerging Mass Market",
-      "action": "Build balances: step-up recurring deposits, salary account pitch, digital nudges",
-      "value_rank": 2
+      "label": "Young Low-Balance",
+      "action": "Balance-building first: step-up recurring deposits, salary account pitch, digital engagement.",
+      "balance_rank": 2
     },
     "2": {
-      "label": "Thin-Balance At-Risk",
-      "action": "Retention and activation first: balance-building offers, fee waivers, re-onboarding before any credit pitch",
-      "value_rank": 3
+      "label": "Near-Zero Balance",
+      "action": "Spends more than it holds. Retention and activation before any credit pitch: balance-building offers, fee waivers, re-onboarding.",
+      "balance_rank": 3
     }
   },
   "feature_ranges": {

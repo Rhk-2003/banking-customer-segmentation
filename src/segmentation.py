@@ -67,44 +67,44 @@ def name_segments(profile: pd.DataFrame) -> dict:
     Label clusters from their own position in the fitted profile rather than by
     hand, so the names stay correct if the model is refit on new data.
 
-    Clusters are ranked by a value score (mean of the percentile ranks of average
-    balance and average spend). Rank position fixes the tier, which guarantees
-    four distinct labels; age and balance level then refine the top and bottom.
+    Names describe *what separates the clusters in this data* - balance tier and
+    life stage - and nothing more. They deliberately avoid wealth vocabulary
+    ("affluent", "premium", "high-value"): on this base the top cluster's median
+    balance is only the 72nd percentile, and the second cluster covers 40% of all
+    customers. Calling either group affluent would import an industry meaning
+    (investable assets in the tens of lakhs) that these numbers do not support.
+
+    Clusters are ranked by median balance, with median spend breaking ties, so
+    the four labels are always distinct. An age qualifier is attached only where
+    a cluster is genuinely older than the base.
     """
     p = profile.set_index("segment")
-    # Average balance is the primary wealth axis; average spend breaks ties.
-    # (A plain mean of the two percentile ranks ties clusters that are high on
-    # one axis and second on the other, which mis-ordered the top two tiers.)
-    order = (p.sort_values(["balance_avg", "monetary_avg"], ascending=False).index.tolist())
-    median_age = p["age"].median()
+    order = p.sort_values(["balance_avg", "monetary_avg"], ascending=False).index.tolist()
+    base_age = p["age"].median()
 
     names = {}
     for rank, seg in enumerate(order):
         age, bal = p.loc[seg, "age"], p.loc[seg, "balance_avg"]
+        older = age >= base_age + 5          # distinctly older than the rest
         if rank == 0:
-            if age >= median_age:
-                label = "Affluent Established"
-                action = ("Wealth tier: fixed deposits, investment advisory, premium credit cards, "
-                          "relationship-manager coverage")
-            else:
-                label = "High-Value Rising"
-                action = ("Grow the relationship early: salary account upgrade, premium cards, "
-                          "systematic investment plans")
+            label = ("Established Mid-Balance" if older else "Young Mid-Balance")
+            action = ("Longest tenure and the highest balances in this base. Term deposits, "
+                      "portfolio review, retirement and protection products.")
         elif rank == 1:
-            label = "Core Mass Affluent"
-            action = "Cross-sell depth: recurring deposits, auto-debit, protection and card upgrades"
+            label = ("Established Mid-Balance" if older else "Young Mid-Balance")
+            if label in {v["label"] for v in names.values()}:
+                label = "Mainstream Mid-Balance"
+            action = ("The volume segment. Recurring deposits, auto-debit, card upgrades - "
+                      "test offers here before rolling them out.")
         elif rank == 2:
-            label = "Emerging Mass Market"
-            action = "Build balances: step-up recurring deposits, salary account pitch, digital nudges"
+            label = "Young Low-Balance"
+            action = ("Balance-building first: step-up recurring deposits, salary account "
+                      "pitch, digital engagement.")
         else:
-            if bal <= p["balance_avg"].quantile(0.25):
-                label = "Thin-Balance At-Risk"
-                action = ("Retention and activation first: balance-building offers, fee waivers, "
-                          "re-onboarding before any credit pitch")
-            else:
-                label = "Low-Engagement Mass"
-                action = "Digital onboarding, auto-debit setup, basic savings engagement"
-        names[int(seg)] = {"label": label, "action": action, "value_rank": rank}
+            label = ("Near-Zero Balance" if bal <= 1_000 else "Minimal-Balance")
+            action = ("Spends more than it holds. Retention and activation before any "
+                      "credit pitch: balance-building offers, fee waivers, re-onboarding.")
+        names[int(seg)] = {"label": label, "action": action, "balance_rank": rank}
     return names
 
 
